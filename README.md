@@ -29,7 +29,7 @@ Không đưa `service_role`, database password hoặc PAT vào `.env` frontend.
 ## Supabase
 
 1. Tạo Supabase project.
-2. Chạy các file trong `supabase/migrations/` theo thứ tự `0001` → `0003` bằng SQL Editor hoặc `supabase db push`.
+2. Chạy các file trong `supabase/migrations/` theo thứ tự `0001` → `0004` bằng SQL Editor hoặc `supabase db push`.
 3. Chạy `supabase/seed.sql` nếu cần dữ liệu demo.
 4. Tạo ít nhất một user trong Authentication → Users cho Admin.
 5. Dùng URL/anon key của project trong `.env.local`.

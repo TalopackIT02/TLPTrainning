@@ -15,6 +15,7 @@
 - [x] Public batch, employee search, learner state, material progress.
 - [x] Atomic start/resume/snapshot, answer save, submit/auto-submit, result/review.
 - [x] Anon chỉ có RPC execute.
+- [x] Live Supabase admin adapter map/persist CRUD và RPC transaction cho question/import/batch.
 
 ## Phase 3–7 — Admin
 - [x] Supabase Auth guard, login/logout và admin shell.

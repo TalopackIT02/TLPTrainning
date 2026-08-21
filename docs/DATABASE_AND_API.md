@@ -12,6 +12,6 @@ Các public RPC được cấp cho anon/authenticated:
 - `save_answer`
 - `submit_attempt`
 
-`create_batch_from_exam` chỉ cấp authenticated. Hàm snapshot exam/bank rules và assign nhân viên trong một transaction.
+Các RPC `admin_save_question`, `admin_import_questions` và `admin_upsert_training_batch` chỉ cấp authenticated; chúng giữ question/options, import job và batch snapshot/assignment trong transaction.
 
 Mọi RPC learner xác minh `public_token`, employee/batch relation và attempt/question/option relation. `public_attempt_payload` không được grant ra ngoài và chỉ trả correct answer khi `review_unlocked=true`.
