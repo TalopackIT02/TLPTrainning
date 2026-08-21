@@ -7,7 +7,7 @@
 ## Phase 1 — Database
 - [x] Schema, PK/FK/unique/check/index/timestamp/archive model.
 - [x] RLS authenticated admin + revoke anon tables.
-- [x] Seed 15 employees, 2 courses, material, bank 20 questions, exam, batch assignment.
+- [x] Migrations production không chứa dữ liệu khởi tạo nghiệp vụ.
 - [x] Invariant SQL query.
 - [ ] BLOCKED EXTERNAL: chạy migrations trên Supabase project sạch (cần project credentials/CLI).
 
@@ -30,7 +30,8 @@
 
 ## Phase 11 — QA
 - [x] Unit tests: scoring, pass/fail, limit, stop-on-pass, review, expiry timer, CSV.
-- [x] E2E: admin batch; learner fail/retry/pass; refresh timer; review lock.
+- [x] Smoke E2E xác nhận thiếu Supabase không fallback sang dữ liệu local.
+- [ ] BLOCKED EXTERNAL: critical E2E admin/learner cần Supabase test project đã chạy migrations.
 - [x] Desktop/mobile Playwright projects configured.
 
 ## Phase 12 — Deploy

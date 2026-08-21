@@ -15,7 +15,7 @@ copy .env.example .env.local
 npm run dev
 ```
 
-Nếu chưa cấu hình Supabase, ứng dụng tự chạy ở **demo mode** bằng dữ liệu localStorage. Đăng nhập demo đã được điền sẵn; learner link là `#/training/demo-an-toan`. Demo mode chỉ dành cho phát triển/QA, không thay thế RLS/RPC production.
+Ứng dụng yêu cầu kết nối Supabase để hoạt động. Nếu thiếu cấu hình, màn hình đăng nhập và learner route sẽ hiển thị lỗi cấu hình; hệ thống không tạo dữ liệu cục bộ và không có tài khoản đăng nhập thay thế.
 
 Biến môi trường frontend duy nhất:
 
@@ -30,13 +30,10 @@ Không đưa `service_role`, database password hoặc PAT vào `.env` frontend.
 
 1. Tạo Supabase project.
 2. Chạy các file trong `supabase/migrations/` theo thứ tự `0001` → `0004` bằng SQL Editor hoặc `supabase db push`.
-3. Chạy `supabase/seed.sql` nếu cần dữ liệu demo.
-4. Tạo ít nhất một user trong Authentication → Users cho Admin.
-5. Dùng URL/anon key của project trong `.env.local`.
+3. Tạo ít nhất một user trong Authentication → Users cho Admin.
+4. Dùng URL/anon key của project trong `.env.local`.
 
 Migration `0002_rls.sql` không tạo anon table policy. Toàn bộ public learner flow chỉ được cấp `EXECUTE` vào RPC của `0003_learner_rpc.sql`. Score, pass/fail, snapshot và review unlock đều được quyết định trong database.
-
-Public token seed Supabase: `70000000-0000-0000-0000-000000000001`.
 
 ## Test và build
 
@@ -48,7 +45,7 @@ npm run test:e2e
 npm run build
 ```
 
-Unit test bao phủ score/pass, attempt limit, stop-on-pass, review policy, timer và CSV validation. Playwright bao phủ admin batch flow, learner fail → retry → pass, không lộ đáp án sớm và resume timer sau reload trên desktop/mobile.
+Unit test bao phủ score/pass, attempt limit, stop-on-pass, review policy, timer và CSV validation. Playwright không có dữ liệu mẫu; bộ smoke test mặc định xác nhận ứng dụng không fallback sang dữ liệu local khi thiếu Supabase. Các critical flow cần chạy trên một Supabase test project đã áp dụng migrations.
 
 ## GitHub Pages
 
@@ -67,7 +64,7 @@ HashRouter đảm bảo mở trực tiếp `/#/admin` và `/#/training/:publicTo
 - `src/pages/admin`: dashboard, master data, question bank/CSV, exam, batch, monitoring/history.
 - `src/pages/learner`: luồng chọn nhân viên, tài liệu, exam, timer và kết quả.
 - `src/features`: business logic thuần, CSV parser và learner service/RPC adapter.
-- `src/data`: demo adapter và state quản trị.
+- `src/data`: Supabase admin adapter và state quản trị.
 - `supabase/migrations`: schema, RLS, learner/admin RPC.
 - `e2e`: critical flow Playwright.
 

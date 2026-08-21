@@ -4,9 +4,9 @@
 
 Dùng `HashRouter` để GitHub Pages không cần rewrite và refresh/open trực tiếp learner hash route vẫn hoạt động.
 
-## ADR-002 — Demo adapter khi thiếu credentials
+## ADR-002 — Production-only data adapter
 
-Khi không có Supabase env, ứng dụng dùng localStorage seed để dev và E2E chạy trọn luồng. Khi env hợp lệ, Auth và learner API chuyển sang Supabase. Không có secret giả hoặc service role trong bundle.
+Admin Auth, dữ liệu quản trị và learner API chỉ sử dụng Supabase. Khi thiếu biến môi trường, ứng dụng hiển thị lỗi cấu hình và không sinh dữ liệu local, không cấp phiên đăng nhập thay thế. Không có secret giả hoặc service role trong bundle.
 
 ## ADR-003 — Persisted deadline
 

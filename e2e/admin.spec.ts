@@ -1,16 +1,8 @@
 import { expect, test } from '@playwright/test'
-test('admin login, prepare an open batch and assign employee', async ({ page }) => {
+
+test('admin requires a configured Supabase connection', async ({ page }) => {
   await page.goto('/#/admin/login')
-  await page.getByRole('button', { name: 'Đăng nhập' }).click()
-  await expect(page.getByRole('heading', { name: 'Tổng quan đào tạo' })).toBeVisible()
-  await page.goto('/#/admin/batches')
-  await page.getByRole('button', { name: 'Tạo đợt đào tạo' }).click()
-  await page.getByLabel('Mã đợt *').fill('E2E-BATCH')
-  await page.getByLabel('Tên đợt *').fill('Đợt kiểm thử E2E')
-  await page.getByLabel('Exam template *').selectOption('exam-safety')
-  await page.getByLabel('Trạng thái').selectOption('OPEN')
-  await page.getByText('NV001 — Nguyễn Văn An', { exact: true }).click()
-  await page.getByRole('button', { name: 'Lưu snapshot & phân công' }).click()
-  await expect(page.getByText('E2E-BATCH', { exact: true })).toBeVisible()
-  await expect(page.getByText('Đợt kiểm thử E2E', { exact: true })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'TLP Training' })).toBeVisible()
+  await expect(page.getByRole('alert')).toContainText('Hệ thống chưa được kết nối Supabase')
+  await expect(page.getByRole('button', { name: 'Đăng nhập' })).toBeDisabled()
 })
