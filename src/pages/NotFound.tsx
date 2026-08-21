@@ -1,0 +1,2 @@
+import { Link } from 'react-router-dom'; import { Button } from '@/components/ui/button'
+export default function NotFound() { return <main className="grid min-h-screen place-items-center bg-slate-100 p-6 text-center"><div><p className="text-7xl font-black text-primary">404</p><h1 className="mt-3 text-2xl font-bold">Không tìm thấy trang</h1><p className="mt-2 text-sm text-muted-foreground">Đường dẫn không tồn tại hoặc đã thay đổi.</p><Button asChild className="mt-6"><Link to="/admin">Về trang chính</Link></Button></div></main> }

@@ -1,0 +1,5 @@
+import { AlertCircle, LoaderCircle } from 'lucide-react'
+import { Button } from './button'
+export function LoadingState({ label = 'Đang tải dữ liệu…' }: { label?: string }) { return <div className="flex min-h-40 items-center justify-center gap-2 text-sm text-muted-foreground"><LoaderCircle className="animate-spin" />{label}</div> }
+export function EmptyState({ title, description, action }: { title: string; description: string; action?: React.ReactNode }) { return <div className="flex min-h-48 flex-col items-center justify-center gap-2 px-6 text-center"><p className="font-semibold">{title}</p><p className="max-w-md text-sm text-muted-foreground">{description}</p>{action}</div> }
+export function ErrorState({ message, retry }: { message: string; retry?: () => void }) { return <div className="flex min-h-48 flex-col items-center justify-center gap-3 px-6 text-center"><AlertCircle className="text-destructive" /><p className="text-sm text-destructive">{message}</p>{retry ? <Button variant="outline" onClick={retry}>Thử lại</Button> : null}</div> }

@@ -1,0 +1,3 @@
+import { Badge } from '@/components/ui/badge'
+const labels: Record<string, string> = { DRAFT: 'Nháp', ACTIVE: 'Đang dùng', ARCHIVED: 'Lưu trữ', OPEN: 'Đang mở', CLOSED: 'Đã đóng', NOT_STARTED: 'Chưa bắt đầu', READING: 'Đang đọc', READY_FOR_EXAM: 'Sẵn sàng', IN_PROGRESS: 'Đang thực hiện', PASSED: 'Đã đạt', FAILED: 'Không đạt', EXPIRED: 'Quá hạn', LOCKED: 'Đã khóa', SUBMITTED: 'Đã nộp' }
+export function StatusBadge({ status }: { status: string }) { const variant = ['PASSED', 'ACTIVE', 'OPEN', 'READY_FOR_EXAM'].includes(status) ? 'success' : ['FAILED', 'EXPIRED', 'CLOSED'].includes(status) ? 'destructive' : ['IN_PROGRESS', 'READING'].includes(status) ? 'warning' : 'secondary'; return <Badge variant={variant}>{labels[status] ?? status}</Badge> }

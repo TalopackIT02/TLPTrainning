@@ -1,0 +1,6 @@
+import path from 'node:path'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1]
+const base = process.env.GITHUB_ACTIONS && repositoryName ? `/${repositoryName}/` : '/'
+export default defineConfig({ plugins: [react()], base, resolve: { alias: { '@': path.resolve(__dirname, './src') } }, test: { globals: true, include: ['src/**/*.test.{ts,tsx}'], environment: 'jsdom', setupFiles: './src/test/setup.ts', css: true } })
