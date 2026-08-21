@@ -36,4 +36,4 @@
 - [x] Actions quality gate và Pages artifact/deploy workflow.
 - [x] Dynamic repository base + HashRouter.
 - [x] No secret committed; `.env.example` documented.
-- [ ] BLOCKED EXTERNAL: live Pages deployment requires repository secrets, Pages source and push to `main`.
+- [x] GitHub Pages đã bật với source GitHub Actions; workflow run `32462829522` deploy thành công.
