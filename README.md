@@ -32,8 +32,11 @@ Không đưa `service_role`, database password hoặc PAT vào `.env` frontend.
 2. Chạy các file trong `supabase/migrations/` theo thứ tự `0001` → `0004` bằng SQL Editor hoặc `supabase db push`.
 3. Tạo ít nhất một user trong Authentication → Users cho Admin.
 4. Dùng URL/anon key của project trong `.env.local`.
+5. Trong Authentication → URL Configuration, thêm URL ứng dụng (local và GitHub Pages) vào Redirect URLs để email đặt lại mật khẩu có thể quay về đúng ứng dụng.
 
 Migration `0002_rls.sql` không tạo anon table policy. Toàn bộ public learner flow chỉ được cấp `EXECUTE` vào RPC của `0003_learner_rpc.sql`. Score, pass/fail, snapshot và review unlock đều được quyết định trong database.
+
+Mật khẩu không được lưu trong source hoặc hiển thị sẵn trên form. Admin có thể dùng **Quên / đổi mật khẩu** tại trang Login để nhận email recovery, hoặc dùng **Đổi mật khẩu** trong menu sau khi đăng nhập.
 
 ## Test và build
 
